@@ -1,0 +1,202 @@
+{
+  "High City": {
+    "checkpoints": 6,
+    "speedrun": "5wkk0xvw",
+    "api": "DR_1"
+  },
+  "Alaran Ruins": {
+    "checkpoints": 6,
+    "speedrun": "nwlg0mo9",
+    "api": "SuperSecretProject2"
+  },
+  "The Prison": {
+    "checkpoints": 5,
+    "speedrun": "29vmg6q9",
+    "api": "DRD5"
+  },
+  "Legacy": {
+    "checkpoints": 6,
+    "speedrun": "xd0kp1m9",
+    "api": "DR_Legacy_Final"
+  },
+  "Cave": {
+    "checkpoints": 6,
+    "speedrun": "rw6q21pd",
+    "api": "DR_Cave"
+  },
+  "Western": {
+    "checkpoints": 7,
+    "speedrun": "n93qkx2w",
+    "api": "DR_Western"
+  },
+  "Jungle Base": {
+    "checkpoints": 7,
+    "speedrun": "z98rpord",
+    "api": "DR_JungleBase_Beta"
+  },
+  "Sonic": {
+    "checkpoints": 6,
+    "speedrun": "rdno3m5w",
+    "api": "DR_Sonic"
+  },
+  "Ice": {
+    "checkpoints": 8,
+    "speedrun": "gdrpr0ew",
+    "api": "DR_Ice"
+  },
+  "Alien Facility": {
+    "checkpoints": 7,
+    "speedrun": "xd0kmg09",
+    "api": "DR_Alien_Facility"
+  },
+  "Interstellar": {
+    "checkpoints": 8,
+    "speedrun": "xd0kr449",
+    "api": "DR_Interstellar"
+  },
+  "Riviera": {
+    "checkpoints": 8,
+    "speedrun": "nwlgxrg9",
+    "api": "DR_Renaissance"
+  },
+  "Toxic Factory": {
+    "checkpoints": 6,
+    "speedrun": "592j4r7w",
+    "api": "DR_ToxicFactory"
+  },
+  "Yagrium": {
+    "checkpoints": 7,
+    "speedrun": "5d77qqqd",
+    "api": "DR_Yagrium"
+  },
+  "Elements": {
+    "checkpoints": 7,
+    "speedrun": "z98joqrw",
+    "api": "DR_Elements"
+  },
+  "School": {
+    "checkpoints": 6,
+    "speedrun": "ldy1qrpd",
+    "api": "DR_School"
+  },
+  "Expelliarmus": {
+    "checkpoints": 7,
+    "speedrun": "xd10qzy9",
+    "api": "DR_Expelliarmus"
+  },
+  "Wa-hoo": {
+    "checkpoints": 7,
+    "speedrun": "rdq02m1w",
+    "api": "DR_Wahoo"
+  },
+  "Zoo": {
+    "checkpoints": 6,
+    "speedrun": "495888m9",
+    "api": "DR_Zoo"
+  },
+  "Ilvery": {
+    "checkpoints": 7,
+    "speedrun": "ldyp01rd",
+    "api": "DR_Ilvery"
+  },
+  "Throwback": {
+    "checkpoints": 6,
+    "speedrun": "ywe8p34w",
+    "api": "DR_Throwback"
+  },
+  "Vahltir": {
+    "checkpoints": 5,
+    "speedrun": "69z4064w",
+    "api": "DR_Vahltir"
+  },
+  "Mine": {
+    "checkpoints": 7,
+    "speedrun": "69z4kxgw",
+    "api": "DR_Mine"
+  },
+  "SweetTooth": {
+    "checkpoints": 7,
+    "speedrun": "r9g3vrpw",
+    "api": "DR_SweetTooth"
+  },
+  "Enchanted Lagoon": {
+    "checkpoints": 7,
+    "speedrun": "z98627gd",
+    "api": "DR_EnchantedLagoon"
+  },
+  "Starbase": {
+    "checkpoints": 8,
+    "speedrun": "69z34nld",
+    "api": "DR_Starbase"
+  },
+  "Windfall": {
+    "checkpoints": 7,
+    "speedrun": "29v3263w",
+    "api": "DR_Windfall"
+  },
+  "SkyLands": {
+    "checkpoints": 7,
+    "speedrun": "ldyyqrjd",
+    "api": "DR_SkyLands"
+  },
+  "To Bee Or Not To Bee": {
+    "checkpoints": 7,
+    "speedrun": "y9mj1xz9",
+    "api": "DR_ToBeeOrNotToBee"
+  },
+  "Jade Coast": {
+    "checkpoints": 7,
+    "speedrun": "z986gnrd",
+    "api": "DR_JadeCoast"
+  },
+  "Snowfall": {
+    "checkpoints": 7,
+    "speedrun": "4956g4jd",
+    "api": "DR_Snowfall"
+  },
+  "Crystal Night": {
+    "checkpoints": 6,
+    "speedrun": "29v3nelw",
+    "api": "DR_CrystalNight"
+  },
+  "Safari Valley": {
+    "checkpoints": 7,
+    "speedrun": "rdn0el7w",
+    "api": "DR_Safari"
+  },
+  "Temple": {
+    "checkpoints": 6,
+    "speedrun": "kwjz77r9",
+    "api": "DR_Temple"
+  },
+  "Higher Dimensions": {
+    "checkpoints": 9,
+    "speedrun": "r9g442q9",
+    "api": "DR_HigherDimensions"
+  },
+  "Seasons": {
+    "checkpoints": 7,
+    "speedrun": "z987g7rw",
+    "api": "DR_Seasons"
+  },
+  "Gravity": {
+    "checkpoints": 6,
+    "speedrun": "rdq7x6k9",
+    "api": "DR_Gravity"
+  },
+  "Viaduct": {
+    "checkpoints": 8,
+    "speedrun": "owo6zgow",
+    "api": "DR_Spiral"
+  },
+  "Castle": {
+    "checkpoints": 7,
+    "speedrun": "49557v09",
+    "api": "DR_Castle"
+  },
+  "Venice": {
+    "checkpoints": 6,
+    "speedrun": "xd166m59",
+    "api": "DR_Venice"
+  }
+}
