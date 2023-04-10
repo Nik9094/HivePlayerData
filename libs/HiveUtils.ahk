@@ -11,13 +11,13 @@
  */
  
  	global hiveBase := "http://api.hivemc.com/v1/player/"		;base of Hive player statistics link.
-	global monthlyBase := "https://api.rocco.dev/"				;base of Rocco's Monthly leaderboards link.
-	global nextGUI												;saves the next GUI's label
-	global GameLink												;saves the merged link from Link()
-	global GameStat												;saves the full JSON string from APIRequest()
-	global GameInfo												;saves variables above as an array
-	global lineHeight = 40 	;Min height to display a single line for online statuses.
-	global spacing = 60 		;add this height to keep good spacing for the online statuses.
+	global monthlyBase := "https://api.rocco.dev/"			;base of Rocco's Monthly leaderboards link.
+	global nextGUI							;saves the next GUI's label
+	global GameLink							;saves the merged link from Link()
+	global GameStat							;saves the full JSON string from APIRequest()
+	global GameInfo							;saves variables above as an array
+	global lineHeight = 40 						;Min height to display a single line for online statuses.
+	global spacing = 60 						;add this height to keep good spacing for the online statuses.
 	
 class Util {		;every function falls under a this class
 	
@@ -29,13 +29,13 @@ class Util {		;every function falls under a this class
 		return MONTHLY := monthlyBase . Game . "/monthlies/profile/" . UUID
 	}
 	
-	Back(whereTo) {		;to be executed when a "Go back" button is pressed on any window
+	Back(whereTo) {							;to be executed when a "Go back" button is pressed on any window
 		Gui, Destroy
 		GoSub, %whereTo%
 	}
 	
-	Game(UUID, GAME) {		;retrieves all data about a game
-		switch GAME			;and saves it in an array
+	Game(UUID, GAME) {						;retrieves all data about a game
+		switch GAME						;and saves it in an array
 		{
 		Case "General":
 			Link := this.getHiveLink(UUID, "")
@@ -75,10 +75,10 @@ class Util {		;every function falls under a this class
 		return arrInfo := [GameStat, MonthLink, nextGUI]
 	}
 	
-	OnlinePlayers(namesArray, copyrightLine) {		;creates a window with the names given
-		Loop % namesArray.maxIndex()		;loops once for each name inside the array
+	OnlinePlayers(namesArray, copyrightLine) {			;creates a window with the names given
+		Loop % namesArray.maxIndex()				;loops once for each name inside the array
 		{
-			URL := hiveBase . namesArray[A_Index]	;Add current name from array to the link array[1], array[2] etc.
+			URL := hiveBase . namesArray[A_Index]		;Add current name from array to the link array[1], array[2] etc.
 			allStats := APIRequest(URL) 			;And gather the data for current name.
 			Gui, Add, Text,, % "Online status of " . namesArray[A_Index] . ":`n" . allStats.status.description . " " . allStats.status.game ;Add text for current name.
 			guiHeight := ((lineHeight * A_Index) + spacing)		;adjust height of the GUI according to how many names there are.
@@ -100,7 +100,7 @@ class Util {		;every function falls under a this class
 			fileOK = N
 			buttonText = Create friend list
 		} else {
-			fileOK = Y						;there is, do nothing
+			fileOK = Y					;there is, do nothing
 			buttonText = Load Friend list
 		}
 		return fileData := [fileOK, buttonText]
@@ -145,8 +145,8 @@ class Util {		;every function falls under a this class
 		}
 	}
 	
-	getTimezone() {
-		NowUnix := DateAhkToUnix(A_Now)
+	getTimezone() {						; Gets user timezone based on system time.
+		NowUnix := DateAhkToUnix(A_Now)			; Used to format a player's "last played" time.
 		NowUTCUnix := DateAhkToUnix(A_NowUTC)
 		return (NowUnix - NowUTCUnix)
 	}
