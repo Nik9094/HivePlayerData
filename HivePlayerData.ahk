@@ -1,32 +1,32 @@
 SetWorkingDir %A_ScriptDir%						;ensures a consistent directory.
 #Include .\libs\JSON.ahk						;enables commands for data handling.
-#Include .\libs\UnixConvert.ahk					;enables commands for time conversion.
-#Include .\libs\HiveUtils.ahk					;enables commands for background stuff.
-#Include .\libs\DeathRunTimes.ahk				;enables commands for DeathRun times leaderboards.
-#NoTrayIcon										;doesn't show the tray icon.
+#Include .\libs\UnixConvert.ahk						;enables commands for time conversion.
+#Include .\libs\HiveUtils.ahk						;enables commands for background stuff.
+#Include .\libs\DeathRunTimes.ahk					;enables commands for DeathRun times leaderboards.
+#NoTrayIcon								;doesn't show the tray icon.
 #SingleInstance force							;can only run one instance of the program at a time.
-#NoEnv											;doesn't check for empty variables.
-Menu, Tray, Icon, .\resources\Logo.ico,, 1		;loads the window icon.
+#NoEnv									;doesn't check for empty variables.
+Menu, Tray, Icon, .\resources\Logo.ico,, 1				;loads the window icon.
 
-copyrightLine = Made by Nik9094#3814. Press F5 to reload.	;easy access on each window.
+copyrightLine = Made by Nik9094#3814. Press F5 to reload.		;easy access on each window.
 global mojangAPI := "https://api.mojang.com/users/profiles/minecraft/"	;Mojang's API link to request for a UUID
-global lineHeight = 40 	;Min height to display a single line for online statuses.
-global spacing = 60 		;add this height to keep good spacing for the online statuses.
-global version = 0.5		;current version to display in the title and other
+global lineHeight = 40 							;Min height to display a single line for online statuses.
+global spacing = 60 							;add this height to keep good spacing for the online statuses.
+global version = 0.5							;current version to display in the title and other
 global FriendNames
 
 
-APIRequest(URL) {		;initiate connection with specified URL.
+APIRequest(URL) {							;initiate connection with specified URL.
 	WinHTTP := ComObjCreate("WinHttp.WinHttpRequest.5.1")
 	WinHTTP.Open("GET", URL, false)
 	WinHTTP.Send()
-	return JSON.Load(WinHTTP.ResponseText)		;If everything goes nicely, the whole string of data is saved.
+	return JSON.Load(WinHTTP.ResponseText)				;If everything goes nicely, the whole string of data is saved.
 }
 
-timeDiff := Util.getTimezone()		;Get difference in seconds between local timezone and UTC
+timeDiff := Util.getTimezone()						;Get difference in seconds between local timezone and UTC
 DRtimeLeads.checkMapsFile()
 
-InitialPage:		;First page the user sees.
+InitialPage:								;First page the user sees.
 	Gui, New, +Border, % "Hive Statistics GUI v" version " - Select action"
 	Gui, Add, Text, section, Select what kind of statistics you want to view:
 	Gui, Add, Button, xp+20 y30 w150 Center gIGNLabel Default, Player statistics
@@ -35,7 +35,7 @@ InitialPage:		;First page the user sees.
 	Gui, Show, Center w370 h105
 return
 
-IGNLabel:		;Selected to see player stats: must enter a IGN first.
+IGNLabel:								;Selected to see player stats: must enter a IGN first.
 	whereTo = InitialPage
 	Gui, Destroy
 	Gui, New, +Border, % "Hive Statistics GUI v" version " - Enter name"
@@ -47,21 +47,21 @@ IGNLabel:		;Selected to see player stats: must enter a IGN first.
 	Gui, Show, Center w370 h130
 return
 
-IGNok:		;Pressed OK, save name and check for blank names.
+IGNok:									;Pressed OK, save name and check for blank names.
 	Gui, Submit, NoHide
 	IGN = %IGNBox%
 	if (IGN == "")
 	{
 		MsgBox,, % "Hive Statistics GUI v" version " - Error", "Name can't be blank. Please enter a valid name."
 	} else {	;Name isn't blank. Go on as normal.
-		UUIDget := APIRequest(mojangAPI . IGN)		;get user's UUID from Mojang.
+		UUIDget := APIRequest(mojangAPI . IGN)			;get user's UUID from Mojang.
 		UUID := UUIDget.id
 		Gui, Destroy
 		Gosub, GamesPage
 	}
 return
 	
-GamesPage:		;Correct name, make new GUI to select a game.
+GamesPage:								;Correct name, make new GUI to select a game.
 	whereTo = IGNLabel
 	Gui, New, +Border, % "Hive Statistics GUI v" version " - " IGN
 	Gui, Add, Text,, Select gamemode to show statistics of:
@@ -71,18 +71,18 @@ GamesPage:		;Correct name, make new GUI to select a game.
 	Gui, Show, Center w350 h100
 return
 
-SelectedGame:		;Save selected game, change API link and GUI to show.
+SelectedGame:								;Save selected game, change API link and GUI to show.
 	Gui, Submit, NoHide
 	GAME = %GameSel%
 	Gui, Destroy
-	GameInfo := Util.Game(UUID, GAME)	;Retrieves the full JSON string and the next page to show in an array.
-	GameStat := GameInfo[1]					;Index 1 of GameInfo has the JSON string of Hive player data.
-	MonthLink := GameInfo[2]				;Index 2 has the monthly link.
-	nextGUI := GameInfo[3]					;Index 3 has the next page to show.
+	GameInfo := Util.Game(UUID, GAME)				;Retrieves the full JSON string and the next page to show in an array.
+	GameStat := GameInfo[1]						;Index 1 of GameInfo has the JSON string of Hive player data.
+	MonthLink := GameInfo[2]					;Index 2 has the monthly link.
+	nextGUI := GameInfo[3]						;Index 3 has the next page to show.
 	GoSub, %nextGUI%
 return
 
-GeneralStats:	;Show general stats.
+GeneralStats:								;Show general stats.
 	whereTo = GamesPage
 	Gui, New, +Border, % "Hive Statistics GUI v" version " - " IGN
 	Gui, Font, underline
@@ -102,7 +102,7 @@ GeneralStats:	;Show general stats.
 	Gui, Show, Center w350 h260
 return
 
-DRStats:	;Show DeathRun stats.
+DRStats:								;Show DeathRun stats.
 	whereTo = GamesPage
 	Gui, New, +Border, % "Hive Statistics GUI v" version " - " IGN
 	Gui, Font, underline
@@ -123,7 +123,7 @@ DRStats:	;Show DeathRun stats.
 	Gui, Show, Center w350 h240
 return
 
-DRtimes:	;Show DeathRun times.
+DRtimes:								;Show DeathRun times.
 	whereTo = DRStats
 	Gui, Destroy
 	Gui, New, +Border, % "Hive Statistics GUI v" version " - " IGN
@@ -137,7 +137,7 @@ DRtimes:	;Show DeathRun times.
 	Gui, Show, Center w370 h200
 return
 
-DRMonthly:		;Show DeathRun monthly statistics. 
+DRMonthly:								;Show DeathRun monthly statistics. 
 	whereTo = DRStats
 	Gui, Destroy
 	MonthlyStat := APIRequest(MonthLink)
@@ -156,7 +156,7 @@ DRMonthly:		;Show DeathRun monthly statistics.
 	Gui, Show, Center w350 h220
 return
 
-BEDStats:	;Show BedWars stats.
+BEDStats:								;Show BedWars stats.
 	whereTo = GamesPage
 	Gui, New, +Border, % "Hive Statistics GUI v" version " - " IGN
 	Gui, Font, underline
@@ -201,7 +201,7 @@ BEDMonthly:
 	Gui, Show, Center w350 h300
 return
 
-SKYStats:	;Show SkyWars stats.
+SKYStats:								;Show SkyWars stats.
 	whereTo = GamesPage
 	Gui, New, +Border, % "Hive Statistics GUI v" version " - " IGN
 	Gui, Font, underline
@@ -318,9 +318,9 @@ BPMonthly:
 	Gui, Show, Center w350 h240
 return
 
-OnlinePlayers:		;Enter names of players for online status.
+OnlinePlayers:									;Enter names of players for online status.
 	whereTo = InitialPage
-	fileData := Util.CheckFriendList()			;Run first check if friendList.txt exists
+	fileData := Util.CheckFriendList()					;Run first check if friendList.txt exists
 	fileOK := fileData[1]							;file present? save true/false
 	buttonText := fileData[2]						;what to show on OnlinePlayers label
 	Gui, Destroy
@@ -337,7 +337,7 @@ OnlinePlayers:		;Enter names of players for online status.
 	Gui, Show, Center w370 h190
 return
 
-NamesOK:		;Pressed OK, create GUI for all names.
+NamesOK:									;Pressed OK, create GUI for all names.
 	whereTo = OnlinePlayers
 	Gui, Submit, NoHide
 	NameList = %NameInput%
@@ -349,8 +349,8 @@ NamesOK:		;Pressed OK, create GUI for all names.
 		Gui, Destroy
 		Gui, New, +Border, % "Hive Statistics GUI v" version " - Online status"
 		namesArray := StrSplit(NameList, ", ")  ;comma+space separates the names.
-		Util.OnlinePlayers(namesArray, copyrightLine)	;creates adaptive window to show online statuses.
-	}														;I have to call it with copyrightLine because it doesn't hecking work without.
+		Util.OnlinePlayers(namesArray, copyrightLine)			;creates adaptive window to show online statuses.
+	}									;I have to call it with copyrightLine because it doesn't work without, ???.
 return
 
 LoadFriends:
@@ -374,13 +374,13 @@ DeleteFriends:
 	}
 return
 
-Back:	;label to call "previous screen" function.
+Back:										;label to call "previous screen" function.
 	Util.Back(whereTo)
 return
 
 #If WinActive("ahk_exe HivePlayerData.exe") || WinActive("ahk_exe AutoHotKey.exe")	;Reload only works when the program is focused.
 F5::Reload
 #If
-GuiClose:		;Closing any of the windows stops the program.
+GuiClose:									;Closing any of the windows stops the program.
 	ExitApp
 return
